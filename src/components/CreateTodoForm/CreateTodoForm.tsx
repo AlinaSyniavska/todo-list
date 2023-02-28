@@ -13,7 +13,7 @@ const CreateTodoForm: FC = () => {
         const titleInput = document.getElementById('title') as HTMLInputElement;
         const descriptionInput = document.getElementById('description') as HTMLInputElement;
 
-        if (titleInput.value === '') {
+        if (titleInput.value.trim() === '') {
             titleInput.classList.add('errorInput');
             setTitleError();
         } else {
@@ -21,7 +21,7 @@ const CreateTodoForm: FC = () => {
             cleanTitleError();
         }
 
-        if (descriptionInput.value === '') {
+        if (descriptionInput.value.trim() === '') {
             descriptionInput.classList.add('errorInput');
             setDescriptionError();
 
@@ -67,7 +67,7 @@ const CreateTodoForm: FC = () => {
 
         checkFields();
 
-        if (titleInput.value === '' || descriptionInput.value === '') {
+        if (titleInput.value.trim() === '' || descriptionInput.value.trim() === '') {
             return;
         }
 
