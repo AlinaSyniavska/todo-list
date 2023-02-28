@@ -1,48 +1,102 @@
 import {FC} from "react";
-import {useForm} from "react-hook-form";
-import {joiResolver} from "@hookform/resolvers/joi";
 
-import {ITodo} from "../../interfaces";
-import {todoValidator} from "../../validators";
 import {todoListActions} from "../../redux";
 import {useAppDispatch} from "../../hooks";
 import style from './CreateTodoForm.module.css';
+import '../../App.css';
 
 const CreateTodoForm: FC = () => {
-    const {register, reset, handleSubmit, formState: {errors}} = useForm<ITodo>({
-        resolver: joiResolver(todoValidator),
-        mode: "all"
-    });
-
     const dispatch = useAppDispatch();
+    const message = 'This field is empty';
 
-    const submitForm = async (todo: ITodo) => {
-        try {
-            const newTodo = {
-                title: todo.title,
-                description: todo.description,
-            }
+    const checkFields = () => {
+        const titleInput = document.getElementById('title') as HTMLInputElement;
+        const descriptionInput = document.getElementById('description') as HTMLInputElement;
 
-            console.log(newTodo);
-
-            dispatch(todoListActions.createTodo({todo: newTodo}))
-
-            reset();
-        } catch (e: any) {
-            console.log(e.response.data());
+        if (titleInput.value === '') {
+            titleInput.classList.add('errorInput');
+            setTitleError();
+        } else {
+            titleInput.classList.remove('errorInput');
+            cleanTitleError();
         }
+
+        if (descriptionInput.value === '') {
+            descriptionInput.classList.add('errorInput');
+            setDescriptionError();
+
+        } else {
+            descriptionInput.classList.remove('errorInput');
+            cleanDescriptionError();
+        }
+    };
+
+    const cleanForm = () => {
+        const titleInput = document.getElementById('title') as HTMLInputElement;
+        const descriptionInput = document.getElementById('description') as HTMLInputElement;
+
+        titleInput.value = '';
+        descriptionInput.value = '';
+    };
+
+    const setTitleError = () => {
+        const errorTitle = document.getElementById('errorTitle') as HTMLDivElement;
+        errorTitle.classList.add('errorBox');
+    };
+
+    const setDescriptionError = () => {
+        const errorDescription = document.getElementById('errorDescription') as HTMLDivElement;
+        errorDescription.classList.add('errorBox');
+    };
+
+    const cleanTitleError = () => {
+        const errorTitle = document.getElementById('errorTitle') as HTMLDivElement;
+        errorTitle.classList.remove('errorBox');
+    };
+
+    const cleanDescriptionError = () => {
+        const errorDescription = document.getElementById('errorDescription') as HTMLDivElement;
+        errorDescription.classList.remove('errorBox');
+    };
+
+    const submitForm = (event: React.MouseEvent<HTMLButtonElement>) => {
+        const titleInput = document.getElementById('title') as HTMLInputElement;
+        const descriptionInput = document.getElementById('description') as HTMLInputElement;
+
+        event.preventDefault();
+
+        checkFields();
+
+        if (titleInput.value === '' || descriptionInput.value === '') {
+            return;
+        }
+
+        const newTodo = {
+            title: titleInput.value,
+            description: descriptionInput.value,
+        }
+
+        console.log(newTodo)
+
+        dispatch(todoListActions.createTodo({todo: newTodo}))
+        cleanForm();
     }
 
-    return (
-        <form className={""} onSubmit={handleSubmit(submitForm)}>
-            <label className={""}>Title:</label>
-            <input type={'text'} placeholder={'Enter title'} {...register('title')}/>
-            <div className={""}>{errors.title && <span>{errors.title.message}</span>}</div>
-            <label className={""}>Description:</label>
-            <input type={'text'} placeholder={'Enter description'} {...register('description')}/>
-            <div className={"errorBox"}>{errors.description && <span>{errors.description?.message}</span>}</div>
 
-            <button className={""}>Create</button>
+    return (
+        <form className={style.form}>
+            <div>
+                <label>Title:</label>
+                <input id={'title'} type={'text'} placeholder={'Enter title'} onChange={cleanTitleError}/>
+                <div id={'errorTitle'} className={'errorBoxEmpty'}>{message}</div>
+            </div>
+            <div>
+                <label>Description:</label>
+                <input id={'description'} type={'text'} placeholder={'Enter description'} onChange={cleanDescriptionError}/>
+                <div id={'errorDescription'} className={'errorBoxEmpty'}>{message}</div>
+            </div>
+
+            <button onClick={submitForm}>Create</button>
         </form>
     );
 };

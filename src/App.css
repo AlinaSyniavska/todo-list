@@ -1,0 +1,19 @@
+body {
+    background: gainsboro;
+    padding: 20px;
+}
+
+.errorInput {
+    border: 1px solid red;
+}
+
+.errorBoxEmpty {
+    color: red;
+    height: 30px;
+    visibility: hidden;
+}
+
+.errorBox {
+    visibility: visible;
+}
+
