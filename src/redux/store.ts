@@ -1,8 +1,8 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
-import {todoReducer} from "./slices";
+import {todoListReducer} from "./slices";
 
 const rootReducer = combineReducers({
-    todoReducer,
+    todoListReducer,
 });
 
 const setupStore = () => configureStore({

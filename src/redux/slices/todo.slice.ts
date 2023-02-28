@@ -23,13 +23,13 @@ const todoSlice = createSlice({
 
 });
 
-const {reducer: todoReducer, actions: {createTodo}} = todoSlice;
+const {reducer: todoListReducer, actions: {createTodo}} = todoSlice;
 
-const todoActions = {
+const todoListActions = {
     createTodo,
 };
 
 export {
-    todoActions,
-    todoReducer,
+    todoListReducer,
+    todoListActions,
 }

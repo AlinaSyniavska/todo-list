@@ -4,12 +4,17 @@ import {joiResolver} from "@hookform/resolvers/joi";
 
 import {ITodo} from "../../interfaces";
 import {todoValidator} from "../../validators";
+import {todoListActions} from "../../redux";
+import {useAppDispatch} from "../../hooks";
+import style from './CreateTodoForm.module.css';
 
 const CreateTodoForm: FC = () => {
     const {register, reset, handleSubmit, formState: {errors}} = useForm<ITodo>({
         resolver: joiResolver(todoValidator),
         mode: "all"
     });
+
+    const dispatch = useAppDispatch();
 
     const submitForm = async (todo: ITodo) => {
         try {
@@ -20,7 +25,7 @@ const CreateTodoForm: FC = () => {
 
             console.log(newTodo);
 
-            // dispatch(todoActions.createTodo({todo: newTodo}))
+            dispatch(todoListActions.createTodo({todo: newTodo}))
 
             reset();
         } catch (e: any) {
