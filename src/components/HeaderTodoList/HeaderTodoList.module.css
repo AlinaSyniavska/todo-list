@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    align-items: center;
+    column-gap: 20px;
+    height: 30px;
+    width: max-content;
+    background: gray;
+}
+
+.container > div {
+    width: 150px;
+    text-align: center;
+}
+

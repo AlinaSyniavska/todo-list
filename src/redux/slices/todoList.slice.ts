@@ -10,20 +10,20 @@ const initialState: IState = {
     todos: [],
 };
 
-const todoSlice = createSlice({
-    name: 'todoSlice',
+const todoListSlice = createSlice({
+    name: 'todoListSlice',
     initialState,
     reducers: {
         createTodo: (state, action) => {
-            const note = action.payload.note;
-            state.todos.push(note);
+            const todo = action.payload.todo;
+            state.todos.push(todo);
         },
 
     },
 
 });
 
-const {reducer: todoListReducer, actions: {createTodo}} = todoSlice;
+const {reducer: todoListReducer, actions: {createTodo}} = todoListSlice;
 
 const todoListActions = {
     createTodo,

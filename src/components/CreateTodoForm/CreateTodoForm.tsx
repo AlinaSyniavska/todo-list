@@ -76,12 +76,9 @@ const CreateTodoForm: FC = () => {
             description: descriptionInput.value,
         }
 
-        console.log(newTodo)
-
         dispatch(todoListActions.createTodo({todo: newTodo}))
         cleanForm();
     }
-
 
     return (
         <form className={style.form}>
