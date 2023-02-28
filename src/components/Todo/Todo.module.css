@@ -4,12 +4,16 @@
     column-gap: 20px;
     height: 30px;
     width: max-content;
-    background: #b2aeae;
-    margin-bottom: 20px;
+    background: gray;
+    padding: 10px 0;
+    margin-bottom: 10px;
 }
 
 .container > div {
     width: 150px;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
 
