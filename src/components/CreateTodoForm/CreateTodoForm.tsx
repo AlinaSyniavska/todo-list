@@ -1,11 +1,12 @@
 import {FC} from "react";
 
 import {todoListActions} from "../../redux";
-import {useAppDispatch} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 import style from './CreateTodoForm.module.css';
 import '../../App.css';
 
 const CreateTodoForm: FC = () => {
+    const {todos} = useAppSelector(state => state.todoListReducer);
     const dispatch = useAppDispatch();
     const message = 'This field is empty';
 
@@ -72,8 +73,10 @@ const CreateTodoForm: FC = () => {
         }
 
         const newTodo = {
+            id: todos.length ? todos.length + 1 : 1,
             title: titleInput.value,
             description: descriptionInput.value,
+            status: false,
         }
 
         dispatch(todoListActions.createTodo({todo: newTodo}))
