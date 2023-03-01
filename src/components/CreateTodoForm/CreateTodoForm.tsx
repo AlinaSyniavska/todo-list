@@ -19,19 +19,15 @@ const CreateTodoForm: FC = () => {
 
     const checkFields = () => {
         if (title.current?.value.trim() === '') {
-            title.current?.classList.add('errorInput');
             setTitleError();
         } else {
-            title.current?.classList.remove('errorInput');
             cleanTitleError();
         }
 
         if (description.current?.value.trim() === '') {
-            description.current?.classList.add('errorInput');
             setDescriptionError();
 
         } else {
-            description.current?.classList.remove('errorInput');
             cleanDescriptionError();
         }
     };
@@ -41,18 +37,22 @@ const CreateTodoForm: FC = () => {
     };
 
     const setTitleError = () => {
+        title.current?.classList.add('errorInput');
         errorTitle.current?.classList.add('errorBox');
     };
 
     const setDescriptionError = () => {
+        description.current?.classList.add('errorInput');
         errorDescription.current?.classList.add('errorBox');
     };
 
     const cleanTitleError = () => {
+        title.current?.classList.remove('errorInput');
         errorTitle.current?.classList.remove('errorBox');
     };
 
     const cleanDescriptionError = () => {
+        description.current?.classList.remove('errorInput');
         errorDescription.current?.classList.remove('errorBox');
     };
 
