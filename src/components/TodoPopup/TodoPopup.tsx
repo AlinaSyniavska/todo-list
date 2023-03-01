@@ -1,4 +1,4 @@
-import {FC} from "react";
+import React, {FC} from "react";
 
 import {ITodo} from "../../interfaces";
 import style from './TodoPopup.module.css';
@@ -23,7 +23,7 @@ const TodoPopup: FC<IProps> = ({todo, setIsOpen}) => {
                 <div className={style.todoDescription}>{description}</div>
                 <div>
                     <label>Status:
-                        <input type={'checkbox'} defaultChecked={status}/>
+                        <input type={'checkbox'} checked={status} onChange={() => console.log(`${status}`)}/>
                     </label>
                 </div>
 

@@ -15,7 +15,7 @@ const Todo: FC<IProps> = ({todo}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const checkboxStatus = useRef<HTMLInputElement>(null);
 
-    const checkStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const changeStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
         const newTodo = Object.assign({}, todo);
         newTodo.status = event.target.checked;
 
@@ -37,7 +37,7 @@ const Todo: FC<IProps> = ({todo}) => {
                 <div>{title}</div>
                 <div>{description}</div>
                 <div>
-                    <input ref={checkboxStatus} type={'checkbox'} defaultChecked={status} onChange={checkStatus}/>
+                    <input ref={checkboxStatus} type={'checkbox'} defaultChecked={status} onChange={changeStatus}/>
                 </div>
             </div>
 
