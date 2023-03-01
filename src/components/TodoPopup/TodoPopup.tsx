@@ -19,7 +19,7 @@ const TodoPopup: FC<IProps> = ({todo, setIsOpen}) => {
         <div className={style.popupBox}>
             <div className={style.box}>
                 <h5 className={style.todoTitle}>{title}</h5>
-                <p>Description:</p>
+                <p><strong>Description:</strong></p>
                 <div className={style.todoDescription}>{description}</div>
                 <div>
                     <label>Status:

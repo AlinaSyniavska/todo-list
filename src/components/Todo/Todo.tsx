@@ -1,7 +1,9 @@
-import React, {FC, useState} from "react";
+import React, {FC, useRef, useState} from "react";
 import {ITodo} from "../../interfaces";
 import style from "./Todo.module.css";
 import {TodoPopup} from "../TodoPopup/TodoPopup";
+import {useAppDispatch} from "../../hooks";
+import {todoListActions} from "../../redux";
 
 interface IProps {
     todo: ITodo,
@@ -9,15 +11,19 @@ interface IProps {
 
 const Todo: FC<IProps> = ({todo}) => {
     const {id, title, description, status} = todo;
-    const [todoStatus, setTodoStatus] = useState<boolean>(false);
+    const dispatch = useAppDispatch();
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const checkboxStatus = useRef<HTMLInputElement>(null);
 
     const checkStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(event.target.checked);
-        setTodoStatus(event.target.checked);
+        // dispatch(todoListActions.updateTodo({}));
     }
 
-    const togglePopup = () => {
+    const togglePopup = (event: React.MouseEvent<HTMLElement>) => {
+        if (event.target === checkboxStatus.current) {
+            return;
+        }
+
         setIsOpen(!isOpen);
     }
 
@@ -28,7 +34,7 @@ const Todo: FC<IProps> = ({todo}) => {
                 <div>{title}</div>
                 <div>{description}</div>
                 <div>
-                    <input type={'checkbox'} defaultChecked={status} onChange={checkStatus}/>
+                    <input ref={checkboxStatus} type={'checkbox'} defaultChecked={status} onChange={checkStatus}/>
                 </div>
             </div>
 
