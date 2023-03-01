@@ -4,27 +4,26 @@ import style from "./Todo.module.css";
 
 interface IProps {
     todo: ITodo,
-    index: number,
 }
 
-const Todo: FC<IProps> = ({todo, index}) => {
-    const {title, description} = todo;
-    const [status, setStatus] = useState<boolean>(false);
+const Todo: FC<IProps> = ({todo}) => {
+    const {id, title, description, status} = todo;
+    const [todoStatus, setTodoStatus] = useState<boolean>(false);
 
     const checkStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
         console.log(event.target.checked);
 
 
-        setStatus(event.target.checked);
+        setTodoStatus(event.target.checked);
     }
 
     return (
         <div className={style.container}>
-            <div>{index}</div>
+            <div>{id}</div>
             <div>{title}</div>
             <div>{description}</div>
             <div>
-                <input type={'checkbox'} onChange={checkStatus}/>
+                <input type={'checkbox'} defaultChecked={status} onChange={checkStatus}/>
             </div>
         </div>
     );

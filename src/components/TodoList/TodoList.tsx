@@ -10,7 +10,7 @@ const TodoList: FC = () => {
         <div>
             <HeaderTodoList/>
             {
-                todos.map((todo, index) => <Todo key={index} todo={todo} index={index+1}/>)
+                todos.map((todo) => <Todo key={todo.id} todo={todo}/>)
             }
         </div>
     );
