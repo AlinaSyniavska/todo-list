@@ -19,10 +19,10 @@ const todoListSlice = createSlice({
             state.todos.push(todo);
         },
         updateTodo: (state, action) => {
-            const {id, status} = action.payload.todo;
+            const todo = action.payload.todo;
 
-            const newTodoIndex = state.todos.findIndex(todo => todo.id === id);
-            state.todos[newTodoIndex].status = status;
+            const newTodoIndex = state.todos.findIndex(item => item.id === todo.id);
+            state.todos.splice(newTodoIndex, 1, todo);
         },
 
     },

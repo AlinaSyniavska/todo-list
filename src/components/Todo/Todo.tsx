@@ -16,7 +16,10 @@ const Todo: FC<IProps> = ({todo}) => {
     const checkboxStatus = useRef<HTMLInputElement>(null);
 
     const checkStatus = (event: React.ChangeEvent<HTMLInputElement>) => {
-        // dispatch(todoListActions.updateTodo({}));
+        const newTodo = Object.assign({}, todo);
+        newTodo.status = event.target.checked;
+
+        dispatch(todoListActions.updateTodo({todo: newTodo}));
     }
 
     const togglePopup = (event: React.MouseEvent<HTMLElement>) => {
