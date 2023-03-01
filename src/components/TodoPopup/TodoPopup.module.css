@@ -1,0 +1,35 @@
+.popup-box {
+    position: fixed;
+    background: #00000050;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.box {
+    position: relative;
+    width: 50%;
+    margin: 0 auto;
+    height: auto;
+    max-height: 60vh;
+    margin-top: calc(100vh - 110vh);
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #999;
+    overflow: auto;
+}
+
+.box > .todoTitle {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.box > .todoDescription {
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.box > .todoBtnClose {
+    margin-top: 20px;
+}

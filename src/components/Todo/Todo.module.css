@@ -9,6 +9,10 @@
     margin-bottom: 10px;
 }
 
+.container:hover {
+    cursor: pointer;
+}
+
 .container > div {
     width: 150px;
     text-align: center;
