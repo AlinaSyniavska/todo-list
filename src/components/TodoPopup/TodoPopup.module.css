@@ -8,12 +8,12 @@
 }
 
 .box {
-    position: relative;
+    position: fixed;
+    top: 35%;
+    left: 20%;
     width: 50%;
-    margin: 0 auto;
     height: auto;
     max-height: 60vh;
-    margin-top: calc(100vh - 110vh);
     background: #fff;
     padding: 20px;
     border: 1px solid #999;
