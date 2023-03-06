@@ -1,8 +1,9 @@
-import {FC} from "react";
+import React, {FC} from "react";
 
 import style from './HeaderTodoList.module.css';
 
-const HeaderTodoList: FC = () => {
+const HeaderTodoList: FC = React.memo( () => {
+    console.log('HeaderTodoList')
     return (
         <div className={style.container}>
             <div>ID</div>
@@ -11,6 +12,6 @@ const HeaderTodoList: FC = () => {
             <div>STATUS</div>
         </div>
     );
-};
+});
 
 export {HeaderTodoList};

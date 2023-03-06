@@ -1,11 +1,12 @@
-import {FC, useRef} from "react";
+import React, {FC, useRef} from "react";
 
 import {todoListActions} from "../../redux";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import style from './CreateTodoForm.module.css';
 import '../../App.css';
 
-const CreateTodoForm: FC = () => {
+const CreateTodoForm: FC = React.memo( () => {
+    console.log('CreateTodoForm')
     const {todos} = useAppSelector(state => state.todoListReducer);
     const dispatch = useAppDispatch();
 
@@ -92,7 +93,7 @@ const CreateTodoForm: FC = () => {
             <button onClick={submitForm}>Create</button>
         </form>
     );
-};
+});
 
 export {CreateTodoForm};
 

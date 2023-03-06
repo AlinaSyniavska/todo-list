@@ -9,7 +9,8 @@ interface IProps {
     todo: ITodo,
 }
 
-const Todo: FC<IProps> = ({todo}) => {
+const Todo: FC<IProps> = React.memo( ({todo}) => {
+    console.log('Todo')
     const {id, title, description, status} = todo;
     const dispatch = useAppDispatch();
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -45,6 +46,6 @@ const Todo: FC<IProps> = ({todo}) => {
         </React.Fragment>
 
     );
-};
+});
 
 export {Todo};

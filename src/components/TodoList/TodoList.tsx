@@ -1,10 +1,11 @@
-import {FC} from "react";
+import React, {FC} from "react";
 
 import {HeaderTodoList} from "../HeaderTodoList/HeaderTodoList";
 import {useAppSelector} from "../../hooks";
 import {Todo} from "../Todo/Todo";
 
-const TodoList: FC = () => {
+const TodoList: FC = React.memo( () => {
+    console.log('TodoList')
     const {todos} = useAppSelector(state => state.todoListReducer);
 
     return (
@@ -15,6 +16,6 @@ const TodoList: FC = () => {
             }
         </div>
     );
-};
+});
 
 export {TodoList};
