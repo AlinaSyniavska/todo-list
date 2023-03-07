@@ -93,7 +93,7 @@ const CreateTodoForm: FC = React.memo( () => {
             <button onClick={submitForm}>Create</button>
         </form>
     );
-});
+}, );
 
 export {CreateTodoForm};
 
